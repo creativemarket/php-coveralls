@@ -165,10 +165,12 @@ class CiEnvVarsCollector
     {
         if (isset($this->env['CIRCLECI']) && $this->env['CIRCLECI'] && isset($this->env['CIRCLE_BUILD_NUM'])) {
             $this->env['CI_BUILD_NUMBER'] = $this->env['CIRCLE_BUILD_NUM'];
+            $this->env['CI_SERVICE_NUMBER'] = $this->env['CIRCLE_WORKFLOW_ID'];
             $this->env['CI_NAME'] = 'circleci';
 
             // backup
             $this->readEnv['CIRCLECI'] = $this->env['CIRCLECI'];
+            $this->readEnv['CIRCLE_WORKFLOW_ID'] = $this->env['CIRCLE_WORKFLOW_ID'];
             $this->readEnv['CIRCLE_BUILD_NUM'] = $this->env['CIRCLE_BUILD_NUM'];
             $this->readEnv['CI_NAME'] = $this->env['CI_NAME'];
         }

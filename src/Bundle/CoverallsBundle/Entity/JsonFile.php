@@ -29,6 +29,13 @@ class JsonFile extends Coveralls
     protected $serviceJobId;
 
     /**
+     * Service job number.
+     *
+     * @var null|string
+     */
+     protected $serviceJobNumber;
+
+    /**
      * Service number (not documented).
      *
      * @var string
@@ -131,6 +138,7 @@ class JsonFile extends Coveralls
             // json key => property name
             'service_name' => 'serviceName',
             'service_job_id' => 'serviceJobId',
+            'service_job_number' => 'serviceJobNumber',
             'service_number' => 'serviceNumber',
             'service_build_url' => 'serviceBuildUrl',
             'service_branch' => 'serviceBranch',
@@ -390,6 +398,30 @@ class JsonFile extends Coveralls
     }
 
     /**
+     * Set service job number.
+     *
+     * @param string $serviceJobNumber service job number
+     *
+     * @return $this
+     */
+     public function setServiceJobNumber($serviceJobNumber)
+     {
+         $this->serviceJobNumber = $serviceJobNumber;
+
+         return $this;
+     }
+
+     /**
+      * Return service job number.
+      *
+      * @return null|string
+      */
+     public function getServiceJobNumber()
+     {
+         return $this->serviceJobNumber;
+     }
+
+    /**
      * Return service number.
      *
      * @return string
@@ -565,7 +597,8 @@ class JsonFile extends Coveralls
         $map = [
             // defined in Ruby lib
             'serviceName' => 'CI_NAME',
-            'serviceNumber' => 'CI_BUILD_NUMBER',
+            'serviceNumber' => 'CI_SERVICE_NUMBER',
+            'serviceJobNumber' => 'CI_BUILD_NUMBER',
             'serviceBuildUrl' => 'CI_BUILD_URL',
             'serviceBranch' => 'CI_BRANCH',
             'servicePullRequest' => 'CI_PULL_REQUEST',
